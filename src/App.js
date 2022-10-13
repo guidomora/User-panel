@@ -1,59 +1,27 @@
 import React, { useState } from "react";
-import useValue from "./Hooks/useValue";
-import Input from "./Components/Input";
 import Card from "./Components/Card";
 import Container from "./Components/Container";
-import Boton from "./Components/Boton";
-
+import UserForm from "./Components/UserForm";
+import "./App.css"
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [value, handleChange, reset] = useValue({
-    nombre: "",
-    apellido: "",
-    mail: "",
-  });
 
-  const submit = (e) => {
-    e.preventDefault();
-    setUsers([...users, value]);
-    reset();
-    console.log(value);
+  const submit = (usuario) => {
+    setUsers([...users, usuario]);
   };
 
   return (
     <Container>
       <Card>
-        <form onSubmit={submit}>
-          <Input
-            label="Nombre"
-            type="text"
-            name="nombre"
-            value={value.nombre}
-            onChange={handleChange}
-          />
-          <Input
-            label="Apellido"
-            type="text"
-            name="apellido"
-            value={value.apellido}
-            onChange={handleChange}
-          />
-          <Input
-            label="Email"
-            type="email"
-            name="mail"
-            value={value.mail}
-            onChange={handleChange}
-          />
-          <Boton>Enviar</Boton>
-        </form>
+        <UserForm submit={submit} />
       </Card>
       <Card>
-        <p>
-          {users.map(usuario => usuario.nombre)}
-          {users.map(usuario => usuario.apellido)}
-        </p>
+        <ul>
+          {users.map((x) => (
+            <li key={x.mail}>{`${x.nombre} ${x.apellido} ${x.mail}`}</li>
+          ))}
+        </ul>
       </Card>
     </Container>
   );

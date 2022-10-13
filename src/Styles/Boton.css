@@ -1,0 +1,10 @@
+.boton {
+    font-weight: bold;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 10%;
+    background-color: rgb(67, 168, 250);
+    margin: 15px;
+    height: 30px;
+    width: 60px;
+}
